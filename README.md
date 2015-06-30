@@ -1,7 +1,7 @@
 Command Args
 =====================
 Super simple command arguments parser for C++.
-Yeah, there are a few, but I made this for a 
+Yeah, there are quite a few already in existence, but I made this for a 
 particular purpose, ended up using it quite a 
 bit so it's worth it at this point to put it
 up on GitHub so I can download it from multiple
@@ -71,3 +71,5 @@ if( help )
    exit( EXIT_SUCCESS );
 }
 ```
+
+Enjoy, feel free to update, copy or fix as you feel the need to.
