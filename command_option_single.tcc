@@ -97,7 +97,11 @@ template <class T> class Option : public OptionBase {
          T theRealValue;
          if( typeid(T) == typeid(bool) )
          {
-            if( strcmp( value,  "true" ) == 0 )
+            if( value == nullptr )
+            {
+               (*(bool*)(&theRealValue)) = true;
+            }
+            else if( strcmp( value,  "true" ) == 0 )
             {
                (*(bool*)(&theRealValue)) = true;
             }else if( strcmp( value, "false" ) == 0 )
