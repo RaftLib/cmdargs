@@ -30,12 +30,6 @@ bool help( false );
 cmd.addOption( new Option< bool >( help,
                                     "-h",
                                     "Print this message",
-                                    []( const char *x, bool &v )
-                                    {
-                                       v = true;
-                                       return( true );
-                                    },
-                                    nullptr,
                                     false,
                                     true ) );
 bool printHeader( false );
