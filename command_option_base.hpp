@@ -20,6 +20,7 @@ public:
 
    virtual bool setValue( const char *value ) = 0;
    virtual std::string toString() = 0;
+   virtual std::string getValue() = 0;
    /** 
     * Returns true if the value has been set, useful for mandatory
     * arguments

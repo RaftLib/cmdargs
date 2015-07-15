@@ -43,19 +43,32 @@ CmdArgs::~CmdArgs(){}
 
 void CmdArgs::printArgs(){
    char stars[81];
-   memset(stars, '*', sizeof(char) * 81);
-   stars[80] = '\0';
-   std::cout << stars << std::endl;
-   std::cout << "Options menu for: " << name << std::endl;
+   generateStars( stars, 81 );
+   userstream << stars << std::endl;
+   userstream << "Options menu for: " << name << std::endl;
    for_each( options.begin(),
              options.end(),
              [&]( OptionBase *option ){ 
                   userstream << 
                         option->toString() << std::endl; } );
-   std::cout << "End Options" << std::endl;
-   std::cout << stars << std::endl;
+   userstream << "End Options" << std::endl;
+   userstream << stars << std::endl;
 }
 
+void CmdArgs::printSettings()
+{
+   char stars[ 81 ];
+   generateStars( stars, 81 );
+   userstream << stars << std::endl;
+   userstream << "Current Settings:\n";
+   for_each( options.begin(),
+             options.end(),
+             [&]( OptionBase *option )
+             {
+               userstream << option->get_flag() << ":    " << option->getValue() << "\n";
+             } );
+   userstream << stars << std::endl;
+}
 
 void 
 CmdArgs::addOption(OptionBase *option){
@@ -130,4 +143,12 @@ CmdArgs::allMandatorySet()
       }
    }
    return( true );
+}
+
+void 
+CmdArgs::generateStars( char *buffer, const std::size_t bsize )
+{
+   std::memset( buffer, '*', sizeof(char) * bsize - 2 );
+   buffer[ bsize - 1 ] = '\0';
+   return;
 }

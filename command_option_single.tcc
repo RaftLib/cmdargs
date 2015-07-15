@@ -140,6 +140,11 @@ template <class T> class Option : public OptionBase {
          return( OptionBase::toString( format_item( item ) ) );
       }
 
+      std::string
+      getValue()
+      {
+         return( format_item( item ) );
+      }
    private:
       /**
        * one stop shopping (hopefully) for printing

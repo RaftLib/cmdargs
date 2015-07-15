@@ -57,6 +57,11 @@ class CmdArgs{
        */
       void printArgs();
       /**
+       * printSettings - useful for benchmark codes 
+       */
+      void printSettings();
+      
+      /**
        * addOption - each of these takes a ptr to an options
        * object, there is a method for int64_t, bool, std::string,
        * and double.  
@@ -76,6 +81,10 @@ class CmdArgs{
 
       bool  allMandatorySet();
    private:
+      /** generateStars - 
+       * print cheesy star framed list to buffer of length bsize - 1
+       */
+      void generateStars( char *buffer, const std::size_t bsize );
       std::vector< OptionBase * > options;
       std::string                 name;
       std::ostream                &userstream;

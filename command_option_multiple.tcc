@@ -78,6 +78,13 @@ public:
       }
       return( true );
    }
+   
+   std::string
+   getValue()
+   {
+      assert( false );
+      return( "no implemented yet" );
+   }
 
 
 private:
