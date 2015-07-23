@@ -25,6 +25,7 @@
 #include <queue>
 #include <cassert>
 
+#include <cstdlib>
 #include "command_arguments.h"
 
 

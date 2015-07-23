@@ -22,7 +22,6 @@ AC_TYPE_INT32_T
 AC_TYPE_INT64_T
 
 # Checks for library functions.
-AC_FUNC_MALLOC
 AC_CHECK_FUNCS([memset])
 
 AC_CONFIG_FILES([Makefile
