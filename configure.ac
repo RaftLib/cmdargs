@@ -8,6 +8,15 @@ AC_CONFIG_MACRO_DIR([m4])
 #AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 
+AC_ARG_ENABLE([static],[--enable-static      turn off features we dont want],
+[case "${enableval}" in
+   yes) static=true  ;;
+   no)  static=false ;;
+   *) AC_MSG_ERROR([bad value ${enableval} for --enable-static]) ;;
+ esac],[static=false])
+
+AM_CONDITIONAL([STATIC], [test x$static = xtrue])
+
 # Checks for programs.
 LT_INIT
 AC_PROG_CXX

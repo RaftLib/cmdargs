@@ -78,6 +78,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@STATIC_TRUE@am__append_1 = -static -static-libgcc -static-libstdc++
 subdir = .
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
@@ -354,6 +355,7 @@ nobase_include_HEADERS = $(top_srcdir)/include/cmd \
                          $(top_srcdir)/include/cmdargs/command_option_base.hpp \
                          $(top_srcdir)/include/cmdargs/command_option_single.tcc
 
+AM_LDFLAGS = $(am__append_1)
 all: all-recursive
 
 .SUFFIXES:

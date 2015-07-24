@@ -690,6 +690,8 @@ build_vendor
 build_cpu
 build
 LIBTOOL
+STATIC_FALSE
+STATIC_TRUE
 AM_BACKSLASH
 AM_DEFAULT_VERBOSITY
 AM_DEFAULT_V
@@ -759,8 +761,8 @@ ac_subst_files=''
 ac_user_opts='
 enable_option_checking
 enable_silent_rules
-enable_shared
 enable_static
+enable_shared
 with_pic
 enable_fast_install
 enable_dependency_tracking
@@ -1401,6 +1403,7 @@ Optional Features:
   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
   --enable-silent-rules   less verbose build output (undo: "make V=1")
   --disable-silent-rules  verbose build output (undo: "make V=0")
+--enable-static      turn off features we dont want
   --enable-shared[=PKGS]  build shared libraries [default=yes]
   --enable-static[=PKGS]  build static libraries [default=yes]
   --enable-fast-install[=PKGS]
@@ -2986,6 +2989,27 @@ END
     as_fn_error $? "Your 'rm' program is bad, sorry." "$LINENO" 5
   fi
 fi
+
+# Check whether --enable-static was given.
+if test "${enable_static+set}" = set; then :
+  enableval=$enable_static; case "${enableval}" in
+   yes) static=true  ;;
+   no)  static=false ;;
+   *) as_fn_error $? "bad value ${enableval} for --enable-static" "$LINENO" 5 ;;
+ esac
+else
+  static=false
+fi
+
+
+ if test x$static = xtrue; then
+  STATIC_TRUE=
+  STATIC_FALSE='#'
+else
+  STATIC_TRUE='#'
+  STATIC_FALSE=
+fi
+
 
 # Checks for programs.
 case `pwd` in
@@ -15512,6 +15536,10 @@ else
   am__EXEEXT_FALSE=
 fi
 
+if test -z "${STATIC_TRUE}" && test -z "${STATIC_FALSE}"; then
+  as_fn_error $? "conditional \"STATIC\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
 if test -z "${AMDEP_TRUE}" && test -z "${AMDEP_FALSE}"; then
   as_fn_error $? "conditional \"AMDEP\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
