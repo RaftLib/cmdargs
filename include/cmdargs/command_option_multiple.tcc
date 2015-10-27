@@ -13,6 +13,7 @@
 #include <cstdint>
 #include <cstdlib>
 #include "command_option_base.hpp"
+#include <cassert>
 
 template <class T, int N> class OptionMultiple : public OptionBase {
 public:

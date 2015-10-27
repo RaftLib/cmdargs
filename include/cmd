@@ -20,9 +20,9 @@
 #ifndef _CMD_
 #define _CMD_  1
 
-#include "./cmdargs/command_arguments.h"
-#include "./cmdargs/command_option_base.hpp"
-#include "./cmdargs/command_option_single.tcc"
-#include "./cmdargs/command_option_multiple.tcc"
+#include "./command_arguments.h"
+#include "./command_option_base.hpp"
+#include "./command_option_single.tcc"
+#include "./command_option_multiple.tcc"
 
 #endif /* END _CMD_ */

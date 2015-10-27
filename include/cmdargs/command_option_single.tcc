@@ -12,6 +12,7 @@
 #include <cstdint>
 #include <cstdlib>
 #include <string>
+#include <iomanip>
 #include "command_option_base.hpp"
 
 template <class T> class Option : public OptionBase {
@@ -29,18 +30,22 @@ template <class T> class Option : public OptionBase {
        * @param   in - T&
        * @param   Flag - std::string
        * @param   Description - std::string
-       * @param   Help - bool - set true if this is intended to be a help 
        *          function
        */
+
       Option(T &in, 
              std::string Flag, 
              std::string Description,
-             bool isMandatory = false,
-             bool isHelp = false) : OptionBase( Flag, Description, isMandatory, isHelp ),
-                                    item( in )
+             bool isMandatory = false       ) : OptionBase( Flag, 
+                                                Description, 
+                                                isMandatory, 
+                                                typeid( T ) == typeid( bool ) ),
+                                                item( in )
       { 
          /* nothing really to do */
       }
+
+
       /**
        * Option - An option constructor for an option that
        * sets a single value.  It takes a reference to what
@@ -60,7 +65,6 @@ template <class T> class Option : public OptionBase {
        *          set to true on success or false on failure of conversion
        * @param   PrintBehavior - takes in the current value T& and prints
        *          it with whatever pretty behavior you desire
-       * @param   Help - bool - set true if this is intended to be a help 
        *          function
        */
       Option(T &in, 
@@ -68,8 +72,11 @@ template <class T> class Option : public OptionBase {
              std::string Description,
              std::function< T (const char *, bool&) > TypeConversion,
              std::function< std::string ( T& ) >      PrintBehavior,
-             bool isMandatory = false,
-             bool isHelp = false) : OptionBase( Flag, Description, isMandatory, isHelp ),
+             bool isMandatory = false ) : 
+                                  OptionBase( Flag, 
+                                              Description, 
+                                              isMandatory, 
+                                              ( typeid( T ) == typeid( bool ) )),
                                   item( in ),
                                   F( TypeConversion ),
                                   PrettyPrint( PrintBehavior )

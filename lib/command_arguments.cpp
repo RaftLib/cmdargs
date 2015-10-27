@@ -88,19 +88,31 @@ void CmdArgs::processArgs(int argc, char **argv){
    {
       for( auto it( options.begin() ); it != options.end(); ++it )
       {
+       volatile bool value( (*it)->is_bool() );
        if( strcmp( /* given argument */ argv[i],
                    /* given flag     */ (*it)->get_flag().c_str() ) == 0 )
          {
-            /* increment past flag */
-            if(! (*it)->is_help() )
+            bool success( false );
+            if( i + 1 < argc )
             {
-               i++;
+               success = (*it)->setValue( argv[ ++i ] );
             }
-            const bool success( (*it)->setValue(  argv[i]  ) );
             if( success != true )
             {
-               errorstream << "Invalid input for flag (" <<
-                (*it)->get_flag() << ") : " << argv[i] << "\n";
+               if( (*it)->is_bool() )
+               {
+                  (*it)->setValue( "true" );
+                  /** rewind i **/
+                  if( i != argc - 1 )
+                  {
+                     --i;
+                  }
+               }
+               else
+               {
+                  errorstream << "Invalid input for flag (" <<
+                   (*it)->get_flag() << ") : " << argv[i] << "\n";
+               }
             }
             goto END;
          }

@@ -12,8 +12,8 @@ class OptionBase{
 public:
    OptionBase( const std::string flag,
                const std::string description,
-               bool  Mandatory = false,
-               bool  isHelp = false );
+               bool  isMandatory = false,
+               bool  isBool = false );
 
    virtual ~OptionBase();
 
@@ -29,7 +29,10 @@ public:
    bool is_set();
    
    bool is_mandatory();
-   bool is_help();
+   
+   /** needed to see if a follow-on char is actually required **/
+   bool is_bool();
+
    std::string& get_flag();
    std::string& get_description();
 
@@ -40,7 +43,7 @@ protected:
 private:
    std::string flag;
    std::string description;
-   bool        help;
    bool        mandatory;
+   bool        isbool;
 };
 #endif /* END _COMMAND_OPTION_BASE_HPP_ */

@@ -8,6 +8,8 @@
 #include <cstring>
 #include <iostream>
 #include <fstream>
+#include <iomanip>
+#include <cassert>
 
 #include "command_option_base.hpp"
 
@@ -22,11 +24,11 @@
 OptionBase::OptionBase( const std::string Flag,
                         const std::string Description,
                         bool  isMandatory,
-                        bool  isHelp ) : flag( Flag ),
+                        bool  isBool  ) : flag( Flag ),
                                        description( Description ),
                                        mandatory( isMandatory ),
-                                       help( isHelp ),
-                                       set( false )
+                                       set( false ),
+                                       isbool( isBool )
 {
    /* nothing to do here */
 }
@@ -48,7 +50,8 @@ OptionBase::toString( const std::string defaultValue )
      /* format the description + default properly */
      const size_t description_width( total_width - flag_width );
      std::stringstream desc;
-desc << "// " << description << ", default: " << defaultValue << ", mandatory: " << (is_mandatory() ? "true" : "false" );
+desc << "// " << description << ", default: " << defaultValue << 
+   ", mandatory: " << (is_mandatory() ? "true" : "false" );
      const std::string desc_str( desc.str() );
      if(desc_str.length() > description_width){
         /* width needs to be shortened and made multi-line */
@@ -94,11 +97,6 @@ OptionBase::get_description()
    return( description );
 }
 
-bool
-OptionBase::is_help()
-{
-   return( help );
-}
 
 
 bool 
@@ -111,4 +109,10 @@ bool
 OptionBase::is_mandatory()
 {
    return( (this)->mandatory );
+}
+
+bool
+OptionBase::is_bool()
+{
+   return( (this)->isbool );
 }
