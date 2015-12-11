@@ -1,0 +1,6 @@
+include_directories( ${PROJECT_SRC_DIR}/include )
+set( TESTAPPS basic two )
+foreach( APP ${TESTAPPS} )
+    add_executable( ${APP} "${APP}.cpp" )
+    target_link_libraries( ${APP} cmdargs )
+endforeach( APP ${TESTAPPS} )

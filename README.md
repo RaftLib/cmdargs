@@ -13,11 +13,21 @@ null arguments that I'd like to pass but
 it's easy enough to get around by adding
 an explicit boolean.  
 
-Compiling is super simple, installs all the
+Compiling is super simple:
+
+```bash
+mkdir build
+cd build
+cmake ../cmdargs
+make
+sudo make install
+```
+
+
+which installs all the
 library code and header files in the appropriate
-/usr/local prefix. If I get time I'll update
-to the GNU build system, but a simple Makefile
-works for now.  I've used on both OS X and Linux.
+/usr/local prefix. I've used on both OS X and Linux,
+I'll check to see if it works on Windows when I get a chance.
 
 ##Simple Example
 ```cpp

@@ -22,5 +22,5 @@ main( int argc, char **argv )
       cmd.printArgs();
    }
 
-   return( EXIT_FAILURE );
+   return( EXIT_SUCCESS );
 }
