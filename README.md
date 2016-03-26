@@ -50,7 +50,8 @@ cmd.addOption( new Option< bool >( printHeader,
 
 cmd.addOption( new Option< std::string >( filename,
                                           "-f",
-                                          "Set the output file name" ) );
+                                          "Set the output file name",
+                                          true /** make this arg mandatory **/ ) );
 
 cmd.addOption( new Option< int64_t >( length, 
                                       "-l",
@@ -73,6 +74,15 @@ if( help )
 {
    cmd.printArgs();
    exit( EXIT_SUCCESS );
+}
+/** 
+ * to check and see if all mandatory args are set, add this code
+ * which will print all mandatory args that are missing.
+ */
+if( cmd.allMandatorySet() )
+{ 
+   //exit since well, mandatory args missing
+   exit( EXIT_FAILURE );
 }
 ```
 
