@@ -156,7 +156,7 @@ CmdArgs::allMandatorySet()
       {
          if( ret_val /** not set yet **/ )
          {
-           errorstream << "\033[1;36m" << "The following options must be set:" << "\033[0m" << ""\n";
+           errorstream << "\033[1;36m" << "The following options must be set:" << "\033[0m" << "\n";
          }
          errorstream << "\033[1;31m" << "Option: " << "\033[0m" << option->toString() << "\n"; 
          /** return false for rest, continue to print all not set **/
