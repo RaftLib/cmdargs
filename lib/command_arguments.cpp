@@ -26,6 +26,7 @@
 #include <cassert>
 
 #include <cstdlib>
+#include <cassert>
 #include "command_arguments.h"
 
 
@@ -147,20 +148,28 @@ CmdArgs::getOriginalArgumentCount()
 bool
 CmdArgs::allMandatorySet()
 {
-   for( OptionBase *option : options )
+   bool ret_val( true );
+   for( OptionBase * const option : options )
    {
+      assert( option != nullptr );
       if( option->is_mandatory() && ! option->is_set() )
       {
-         std::cerr << "Option: " << option->toString() << "\n"; 
-         return( false );
+         if( ret_val /** not set yet **/ )
+         {
+           errorstream << "\033[1;36m" << "The following options must be set:" << "\033[0m" << ""\n";
+         }
+         errorstream << "\033[1;31m" << "Option: " << "\033[0m" << option->toString() << "\n"; 
+         /** return false for rest, continue to print all not set **/
+         ret_val = false;
       }
    }
-   return( true );
+   return( ret_val );
 }
 
 void 
 CmdArgs::generateStars( char *buffer, const std::size_t bsize )
 {
+   assert( buffer != nullptr );
    std::memset( buffer, '*', sizeof(char) * bsize - 2 );
    buffer[ bsize - 1 ] = '\0';
    return;
