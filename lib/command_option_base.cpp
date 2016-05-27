@@ -24,17 +24,15 @@
 OptionBase::OptionBase( const std::string Flag,
                         const std::string Description,
                         bool  isMandatory,
-                        bool  isBool  ) : flag( Flag ),
-                                       description( Description ),
-                                       mandatory( isMandatory ),
+                        bool  isBool  ) : 
                                        set( false ),
-                                       isbool( isBool )
+                                       flag( Flag ),
+                                       description( Description ),
+                                       isbool( isBool ),
+                                       mandatory( isMandatory )
 {
    /* nothing to do here */
 }
-
-OptionBase::~OptionBase(){}
-
 
 std::string 
 OptionBase::toString( const std::string defaultValue )

@@ -24,7 +24,7 @@
 #include <algorithm>
 #include <queue>
 #include <cassert>
-
+#include <cstring>
 #include <cstdlib>
 #include <cassert>
 #include "command_arguments.h"
@@ -89,9 +89,8 @@ void CmdArgs::processArgs(int argc, char **argv){
    {
       for( auto it( options.begin() ); it != options.end(); ++it )
       {
-       volatile bool value( (*it)->is_bool() );
-       if( strcmp( /* given argument */ argv[i],
-                   /* given flag     */ (*it)->get_flag().c_str() ) == 0 )
+       if( std::strcmp( /* given argument */ argv[i],
+                        /* given flag     */ (*it)->get_flag().c_str() ) == 0 )
          {
             bool success( false );
             if( i + 1 < argc )

@@ -5,6 +5,8 @@ set( CMAKE_INCLUDE_CURRENT_DIR ON )
 
 
 if( UNIX )
+
+
 ##
 # Check for CXX14 or greater
 ##

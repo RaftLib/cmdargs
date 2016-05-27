@@ -101,44 +101,9 @@ template <class T> class Option : public OptionBase {
                return( true );
             }
          }
-         T theRealValue;
-         if( typeid(T) == typeid(bool) )
-         {
-            if( value == nullptr )
-            {
-               (*(bool*)(&theRealValue)) = true;
-            }
-            else if( strcmp( value,  "true" ) == 0 )
-            {
-               (*(bool*)(&theRealValue)) = true;
-            }else if( strcmp( value, "false" ) == 0 )
-            {
-               (*(bool*)(&theRealValue)) = false;
-            }else{
-               return( false );
-            }
-         }else if( typeid( T ) == typeid( int64_t ) )
-         {
-            errno = 0;
-            (*(int64_t*)(&theRealValue)) = strtoll( value, NULL, 10 );
-            if( errno != EXIT_SUCCESS ) return( false );
-         }else if( typeid( T ) == typeid( double ) )
-         {
-            errno = 0;
-            (*(double*)(&theRealValue)) = strtod( value, NULL );
-            if( errno != EXIT_SUCCESS ) return( false );
-         }
-         else if( typeid( T ) == typeid( std::string ) )
-         {
-            (*(std::string*)(&theRealValue)) = std::string( value );
-         }
-         else{
-            /* invalid type conversion */
-            return( false );
-         }
-         item = theRealValue; 
+         const auto ret_val( setValueHelper( item, value ) );
          (this)->set = true;
-         return( true );
+         return( ret_val );
       }
 
       std::string 
