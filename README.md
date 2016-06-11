@@ -7,13 +7,17 @@ bit so it's worth it at this point to put it
 up on GitHub so I can download it from multiple
 points.
 
+#Build Status
+[![Build Status](https://travis-ci.org/RaftLib/cmdargs.svg?branch=master)](https://travis-ci.org/RaftLib/cmdargs)
+
+#Notes
 There are a few bugs here and there, notably 
 there are a few instances where there are
 null arguments that I'd like to pass but
 it's easy enough to get around by adding
 an explicit boolean.  
 
-Compiling is super simple:
+#Compiling is super simple:
 
 ```bash
 mkdir build
