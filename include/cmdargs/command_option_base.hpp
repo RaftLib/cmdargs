@@ -66,7 +66,7 @@ protected:
    template < class T,
               typename std::enable_if< std::is_signed< T >::value &&
                                        ! std::is_same< T, bool >::value &&
-                                       ! std::is_same< T, double >::value >::type* = nullptr>
+                                       ! std::is_floating_point< T >::value >::type* = nullptr>
    bool setValueHelper( T &realV, const char *value )
    {
        assert( value != nullptr );
@@ -101,6 +101,20 @@ protected:
         assert( value != nullptr );
         errno = 0;
         realV = static_cast< T >( strtod( value, nullptr ) );
+        if( errno != EXIT_SUCCESS )
+        {
+            return( false );
+        }
+        return( true );
+   }
+   
+   template < class T,
+              typename std::enable_if< std::is_same< T, float >::value >::type* = nullptr >
+   bool setValueHelper( T &realV, const char *value )
+   {
+        assert( value != nullptr );
+        errno = 0;
+        realV = static_cast< T >( strtof( value, nullptr ) );
         if( errno != EXIT_SUCCESS )
         {
             return( false );
