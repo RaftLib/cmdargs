@@ -41,7 +41,14 @@ CmdArgs::CmdArgs(const std::string n,
   /* nothing to do here, move along */
 }
 
-CmdArgs::~CmdArgs(){}
+CmdArgs::~CmdArgs()
+{
+    for( auto *ptr : options )
+    {
+        delete( ptr );
+        ptr = nullptr;
+    }
+}
 
 void CmdArgs::printArgs(){
    char stars[81];
