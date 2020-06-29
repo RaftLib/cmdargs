@@ -1,0 +1,7 @@
+/home/jonathan/GIT_RPO/testinstall/pkgconfig/cmdargs.pc
+/home/jonathan/GIT_RPO/testinstall/lib/libcmdargs.a
+/home/jonathan/GIT_RPO/testinstall/include/cmd
+/home/jonathan/GIT_RPO/testinstall/include/cmdargs/command_arguments.h
+/home/jonathan/GIT_RPO/testinstall/include/cmdargs/command_option_base.hpp
+/home/jonathan/GIT_RPO/testinstall/include/cmdargs/command_option_multiple.tcc
+/home/jonathan/GIT_RPO/testinstall/include/cmdargs/command_option_single.tcc
