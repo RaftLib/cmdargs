@@ -47,8 +47,7 @@ bool help( false );
 cmd.addOption( new Option< bool >( help,
                                     "-h",
                                     "Print this message",
-                                    false,
-                                    true ) );
+                                    false ) );
 bool printHeader( false );
 cmd.addOption( new Option< bool >( printHeader,
                                     "-header",
@@ -71,8 +70,6 @@ cmd.addOption( new Option< int64_t >( repeat,
                                       "-r",
                                       "Number of times to repeat simulation" ) );
 
-cmd.processArgs( argc, argv );
-
 /** give object command line **/
 cmd.processArgs( argc, argv );
 
@@ -86,7 +83,7 @@ if( help )
  * to check and see if all mandatory args are set, add this code
  * which will print all mandatory args that are missing.
  */
-if( cmd.allMandatorySet() )
+if(! cmd.allMandatorySet() )
 { 
    //exit since well, mandatory args missing
    exit( EXIT_FAILURE );
